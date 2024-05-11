@@ -786,8 +786,8 @@ select ac.CF,ac.nome
 from Addetto_Conservazione ac
 where ac.disponibilità = true;
 
---Trova il numero di bacini per Iniziativa Di Conservazione
-create view N_Bacini_per_Intervento as (select count(adesione.Id_bacino) as numero_bacini,Adesione.Id_bacino from Adesione group by Adesione.Id_bacino);
+--Trova il numero di Iniziative di Conservazione per Bacino Idrografico
+create view N_Organizzazioni_per_Intervento as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino from Iniziativa_Conservazione group by  Iniziativa_Conservazione.Id_bacino);
 
---Seleziona i bacini col maggior numero di interventi
-select * from N_Bacini_per_Intervento where numero_bacini = (select max(numero_bacini) from N_Organizzazioni_per_Intervento);
+--Seleziona il bacino col maggior numero di iniziative
+select * from N_Organizzazioni_per_Intervento where numero_iniziative = (select max(numero_iniziative) from N_Organizzazioni_per_Intervento);

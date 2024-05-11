@@ -586,33 +586,33 @@ insert into Iniziativa_Conservazione (Id_iniziativa, Id_bacino, longitudine, lat
 values
     (1, 1, 12.0, 45.0, '2024-01-01', '2024-02-01', 80),
     (2, 2, 12.5, 42.5, '2024-01-02', '2024-02-02', 70),
-    (3, 3, 11.0, 45.7, '2024-01-03', '2024-02-03', 90),
-    (4, 4, 11.0, 43.7, '2024-01-04', '2024-02-04', 85),
-    (5, 5, 8.2, 44.7, '2024-01-05', '2024-02-05', 75),
-    (6, 6, 10.5, 43.9, '2024-01-06', '2024-02-06', 60),
-    (7, 7, 11.6, 45.4, '2024-01-07', '2024-02-07', 88),
-    (8, 8, 13.0, 46.3, '2024-01-08', '2024-02-08', 65),
-    (9, 9, 12.4, 46.4, '2024-01-09', '2024-02-09', 72),
+    (3, 2, 11.0, 45.7, '2024-01-03', '2024-02-03', 90),
+    (4, 3, 11.0, 43.7, '2024-01-04', '2024-02-04', 85),
+    (5, 4, 8.2, 44.7, '2024-01-05', '2024-02-05', 75),
+    (6, 5, 10.5, 43.9, '2024-01-06', '2024-02-06', 60),
+    (7, 6, 11.6, 45.4, '2024-01-07', '2024-02-07', 88),
+    (8, 7, 13.0, 46.3, '2024-01-08', '2024-02-08', 65),
+    (9, 7, 12.4, 46.4, '2024-01-09', '2024-02-09', 72),
     (10, 10, 11.4, 44.4, '2024-01-10', '2024-02-10', 80),
-    (11, 1, 12.0, 45.0, '2024-01-11', '2024-02-11', 90),
-    (12, 2, 12.5, 42.5, '2024-01-12', '2024-02-12', 70),
-    (13, 3, 11.0, 45.7, '2024-01-13', '2024-02-13', 85),
-    (14, 4, 11.0, 43.7, '2024-01-14', '2024-02-14', 80),
-    (15, 5, 8.2, 44.7, '2024-01-15', '2024-02-15', 78),
-    (16, 6, 10.5, 43.9, '2024-01-16', '2024-02-16', 62),
-    (17, 7, 11.6, 45.4, '2024-01-17', '2024-02-17', 90),
-    (18, 8, 13.0, 46.3, '2024-01-18', '2024-02-18', 64),
-    (19, 9, 12.4, 46.4, '2024-01-19', '2024-02-19', 70),
+    (11, 8, 12.0, 45.0, '2024-01-11', '2024-02-11', 90),
+    (12, 1, 12.5, 42.5, '2024-01-12', '2024-02-12', 70),
+    (13, 1, 11.0, 45.7, '2024-01-13', '2024-02-13', 85),
+    (14, 3, 11.0, 43.7, '2024-01-14', '2024-02-14', 80),
+    (15, 6, 8.2, 44.7, '2024-01-15', '2024-02-15', 78),
+    (16, 9, 10.5, 43.9, '2024-01-16', '2024-02-16', 62),
+    (17, 9, 11.6, 45.4, '2024-01-17', '2024-02-17', 90),
+    (18, 1, 13.0, 46.3, '2024-01-18', '2024-02-18', 64),
+    (19, 5, 12.4, 46.4, '2024-01-19', '2024-02-19', 70),
     (20, 10, 11.4, 44.4, '2024-01-20', '2024-02-20', 85),
     (21, 1, 12.0, 45.0, '2024-01-21', '2024-02-21', 92),
-    (22, 2, 12.5, 42.5, '2024-01-22', '2024-02-22', 66),
+    (22, 6, 12.5, 42.5, '2024-01-22', '2024-02-22', 66),
     (23, 3, 11.0, 45.7, '2024-01-23', '2024-02-23', 83),
-    (24, 4, 11.0, 43.7, '2024-01-24', '2024-02-24', 88),
+    (24, 8, 11.0, 43.7, '2024-01-24', '2024-02-24', 88),
     (25, 5, 8.2, 44.7, '2024-01-25', '2024-02-25', 79),
     (26, 6, 10.5, 43.9, '2024-01-26', '2024-02-26', 70),
-    (27, 7, 11.6, 45.4, '2024-01-27', '2024-02-27', 90),
+    (27, 9, 11.6, 45.4, '2024-01-27', '2024-02-27', 90),
     (28, 8, 13.0, 46.3, '2024-01-28', '2024-02-28', 60),
-    (29, 9, 12.4, 46.4, '2024-01-29', '2024-02-29', 80),
+    (29, 2, 12.4, 46.4, '2024-01-29', '2024-02-29', 80),
     (30, 10, 11.4, 44.4, '2024-01-30', '2024-02-28', 85),
     (31, 1, 12.0, 45.0, '2024-02-01', NULL, NULL),
     (32, 2, 12.5, 42.5, '2024-02-02', NULL, NULL),
@@ -661,6 +661,83 @@ values
     ('DE901FGH', 14, 14, 14, 8.6, 45.7, 'Paola', 'Lilla', FALSE, 'Studi Ambientali', 'Drone'),
     ('IJ234KLM', 15, 15, 15, 14.2, 41.9, 'Quentin', 'Azzurro', TRUE, 'Analisi dell aria', 'Gas Chromatograph');
 
+insert into Organizzazione_Collaboratrice (Id_organizzazione, contributo, ruolo, tipo)
+values
+    (1, 'Finanziario', 'Supporto', 'Non-profit'),
+    (2, 'Tecnico', 'Principale', 'Governativa'),
+    (3, 'Logistico', 'Collaborativo', 'Privata'),
+    (4, 'Consultativo', 'Consultivo', 'Internazionale'),
+    (5, 'Educativo', 'Supporto', 'Accademica'),
+    (6, 'Scientifico', 'Principale', 'Non-profit'),
+    (7, 'Materiale', 'Collaborativo', 'Privata'),
+    (8, 'Finanziario', 'Supporto', 'Internazionale'),
+    (9, 'Tecnico', 'Consultivo', 'Governativa'),
+    (10, 'Logistico', 'Principale', 'Non-profit'),
+    (11, 'Consultativo', 'Collaborativo', 'Accademica'),
+    (12, 'Educativo', 'Supporto', 'Privata'),
+    (13, 'Scientifico', 'Principale', 'Internazionale'),
+    (14, 'Materiale', 'Collaborativo', 'Governativa'),
+    (15, 'Finanziario', 'Consultivo', 'Accademica'),
+    (16, 'Tecnico', 'Supporto', 'Non-profit'),
+    (17, 'Logistico', 'Principale', 'Privata'),
+    (18, 'Consultativo', 'Collaborativo', 'Internazionale'),
+    (19, 'Educativo', 'Supporto', 'Governativa'),
+    (20, 'Scientifico', 'Principale', 'Accademica');
+
+insert into Adesione (Id_Organizzazione, Id_iniziativa, Id_bacino, longitudine, latitudine)
+values
+    (1, 1, 1, 12.0, 45.0),
+    (2, 1, 1, 12.0, 45.0),
+    (3, 1, 1, 12.0, 45.0),
+    (4, 1, 1, 12.0, 45.0),
+    (5, 2, 2, 12.5, 42.5),
+    (6, 2, 2, 12.5, 42.5),
+    (7, 2, 2, 12.5, 42.5),
+    (8, 2, 2, 12.5, 42.5),
+    (9, 3, 3, 11.0, 45.7),
+    (10, 3, 3, 11.0, 45.7),
+    (1, 3, 3, 11.0, 45.7),
+    (2, 3, 3, 11.0, 45.7),
+    (3, 4, 4, 11.0, 43.7),
+    (4, 4, 4, 11.0, 43.7),
+    (5, 4, 4, 11.0, 43.7),
+    (6, 4, 4, 11.0, 43.7),
+    (7, 5, 5, 8.2, 44.7),
+    (8, 5, 5, 8.2, 44.7),
+    (9, 5, 5, 8.2, 44.7),
+    (10, 5, 5, 8.2, 44.7),
+    (1, 6, 6, 10.5, 43.9),
+    (2, 6, 6, 10.5, 43.9),
+    (3, 6, 6, 10.5, 43.9),
+    (4, 6, 6, 10.5, 43.9),
+    (5, 7, 7, 11.6, 45.4),
+    (6, 7, 7, 11.6, 45.4),
+    (7, 7, 7, 11.6, 45.4),
+    (8, 7, 7, 11.6, 45.4),
+    (9, 8, 8, 13.0, 46.3),
+    (10, 8, 8, 13.0, 46.3),
+    (1, 8, 8, 13.0, 46.3),
+    (2, 8, 8, 13.0, 46.3),
+    (3, 9, 9, 12.4, 46.4),
+    (4, 9, 9, 12.4, 46.4),
+    (5, 9, 9, 12.4, 46.4),
+    (6, 9, 9, 12.4, 46.4),
+    (7, 10, 10, 11.4, 44.4),
+    (8, 10, 10, 11.4, 44.4),
+    (9, 10, 10, 11.4, 44.4),
+    (10, 10, 10, 11.4, 44.4),
+    (1, 11, 1, 12.0, 45.0),
+    (2, 11, 1, 12.0, 45.0),
+    (3, 11, 1, 12.0, 45.0),
+    (4, 11, 1, 12.0, 45.0),
+    (5, 12, 2, 12.5, 42.5),
+    (6, 12, 2, 12.5, 42.5),
+    (7, 12, 2, 12.5, 42.5),
+    (8, 12, 2, 12.5, 42.5),
+    (9, 13, 3, 11.0, 45.7),
+    (10, 13, 3, 11.0, 45.7);
+
+
 --Permette di contare il numero di presenze di una specie nei bacini
 select s.nome_scientifico,count(BI.nome) as numero_di_presenze
 from Specie s
@@ -696,8 +773,8 @@ select ac.CF,ac.nome
 from Addetto_Conservazione ac
 where ac.disponibilità = true;
 
---Trova il numero di organizzazioni per Iniziativa Di Conservazione
-create view N_Organizzazioni_per_Intervento as (select count(adesione.Id_Organizzazione) as numero_organizzazioni,Adesione.Id_iniziativa from Adesione group by Adesione.Id_iniziativa);
+--Trova il numero di bacini per Iniziativa Di Conservazione
+create view N_Bacini_per_Intervento as (select count(adesione.Id_bacino) as numero_bacini,Adesione.Id_bacino from Adesione group by Adesione.Id_bacino);
 
---Seleziona l'intervento col maggior numero di organizzazioni
-select * from N_Organizzazioni_per_Intervento where numero_organizzazioni = (select max(numero_organizzazioni) from N_Organizzazioni_per_Intervento);
+--Seleziona i bacini col maggior numero di interventi
+select * from N_Bacini_per_Intervento where numero_bacini = (select max(numero_bacini) from N_Organizzazioni_per_Intervento);

@@ -885,7 +885,7 @@ from Addetto_Conservazione ac
 where ac.disponibilità = true;
 
 --Trova il numero di Iniziative di Conservazione per Bacino Idrografico
-create view N_Organizzazioni_per_Intervento as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino from Iniziativa_Conservazione group by  Iniziativa_Conservazione.Id_bacino);
+create view N_Organizzazioni_per_Intervento as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino from Iniziativa_Conservazione group by  Iniziativa_Conservazione.Id_bacino order by Iniziativa_Conservazione.Id_bacino ) ;
 
 --Seleziona il bacino col maggior numero di iniziative
 select * from N_Organizzazioni_per_Intervento where numero_iniziative = (select max(numero_iniziative) from N_Organizzazioni_per_Intervento);

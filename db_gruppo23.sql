@@ -215,8 +215,8 @@ create table Addetto_Monitoraggio
 
 create table Strategia
 (
-    Nome    varchar(20),
-    Tecnica varchar(20),
+    Nome    varchar(30),
+    Tecnica varchar(30),
     primary key (Nome, Tecnica)
 );
 
@@ -242,13 +242,13 @@ create table Adesione
 
 create table Sfrutta
 (
-    Nome_Strategia varchar(20),
-    Tecnica        varchar(20),
+    Nome_Strategia varchar(30),
+    Tecnica        varchar(30),
     Id_iniziativa  smallint not null,
     Id_bacino      smallint not null,
     longitudine    numeric  not null,
     latitudine     numeric  not null,
-    primary key (Nome_Strategia, Tecnica),
+    primary key (Nome_Strategia, Tecnica,Id_iniziativa,Id_bacino,longitudine,latitudine),
     constraint pk_strategia foreign key (Nome_Strategia, Tecnica) references Strategia (Nome, Tecnica),
     constraint pk_iniziativa_conservazione foreign key (Id_iniziativa, Id_bacino, longitudine, latitudine) references Iniziativa_Conservazione (Id_iniziativa, Id_bacino, longitudine, latitudine)
 );

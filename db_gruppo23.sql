@@ -860,11 +860,6 @@ join Esistenza E on s.nome_scientifico = E.nome_scientifico
 join Bacino_Idrografico BI on BI.Id_bacino = E.Id_bacino and BI.longitudine = E.longitudine and BI.latitudine = E.latitudine
 group by s.nome_scientifico;
 
---Restituisce il numero di bacini con volume d'acqua > 100 con iniziative di conservazione passate o presenti
-/*select count(bi.nome) as grandi_bacini_senza_interventi
-from Bacino_Idrografico bi
-where bi.volume_acqua > 100 and exists (select nome from Bacino_Idrografico join Iniziativa_Conservazione on Bacino_Idrografico.Id_bacino = Iniziativa_Conservazione.Id_bacino and Bacino_Idrografico.longitudine = Iniziativa_Conservazione.longitudine and Bacino_Idrografico.latitudine = Iniziativa_Conservazione.latitudine );
-*/
 
 select count(bi.nome) as grandi_bacini_senza_interventi_passati
 from Bacino_Idrografico bi

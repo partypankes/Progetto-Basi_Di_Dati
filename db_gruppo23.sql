@@ -629,19 +629,19 @@ insert into Addetto_Conservazione (CF, Id_iniziativa, Id_bacino, longitudine, la
 values
     ('ABC123XYZ', 1, 1, 12.0, 45.0, 'Mario', 'Rossi', TRUE, 'Botanica'),
     ('DEF456UVW', 2, 2, 12.5, 42.5, 'Luigi', 'Bianchi', TRUE, 'Ittiologia'),
-    ('GHI789RST', 3, 3, 11.0, 45.7, 'Giovanni', 'Verdi', FALSE, 'Ornitologia'),
-    ('JKL012XYZ', 4, 4, 11.0, 43.7, 'Paola', 'Neri', TRUE, 'Entomologia'),
-    ('MNO345UVW', 5, 5, 8.2, 44.7, 'Anna', 'Gialli', TRUE, 'Micologia'),
-    ('PQR678RST', 6, 6, 10.5, 43.9, 'Sara', 'Marrone', FALSE, 'Ecologia'),
-    ('STU901XYZ', 7, 7, 11.6, 45.4, 'Daniele', 'Viola', TRUE, 'Zoologia'),
-    ('VWX234UVW', 8, 8, 13.0, 46.3, 'Elisa', 'Grigio', TRUE, 'Botanica'),
-    ('YZA567RST', 9, 9, 12.4, 46.4, 'Federico', 'Blu', FALSE, 'Ittiologia'),
+    ('GHI789RST', 3, 2, 11.0, 45.7, 'Giovanni', 'Verdi', FALSE, 'Ornitologia'),
+    ('JKL012XYZ', 4, 3, 11.0, 43.7, 'Paola', 'Neri', TRUE, 'Entomologia'),
+    ('MNO345UVW', 5, 4, 8.2, 44.7, 'Anna', 'Gialli', TRUE, 'Micologia'),
+    ('PQR678RST', 6, 5, 10.5, 43.9, 'Sara', 'Marrone', FALSE, 'Ecologia'),
+    ('STU901XYZ', 7, 6, 11.6, 45.4, 'Daniele', 'Viola', TRUE, 'Zoologia'),
+    ('VWX234UVW', 8, 7, 13.0, 46.3, 'Elisa', 'Grigio', TRUE, 'Botanica'),
+    ('YZA567RST', 9, 7, 12.4, 46.4, 'Federico', 'Blu', FALSE, 'Ittiologia'),
     ('BCD890XYZ', 10, 10, 11.4, 44.4, 'Chiara', 'Arancio', TRUE, 'Ornitologia'),
-    ('EFG123HIJ', 11, 1, 12.0, 45.0, 'Alessandro', 'Verde', TRUE, 'Zoologia'),
-    ('KLM456NOP', 12, 2, 12.5, 42.5, 'Beatrice', 'Fucsia', FALSE, 'Ecologia'),
-    ('QRS789TUV', 13, 3, 11.0, 45.7, 'Carlo', 'Senape', TRUE, 'Entomologia'),
-    ('XYZ012ABC', 14, 4, 11.0, 43.7, 'Doriana', 'Ocra', TRUE, 'Botanica'),
-    ('DEF345GHI', 15, 5, 8.2, 44.7, 'Ernesto', 'Ciano', TRUE, 'Micologia');
+    ('EFG123HIJ', 11, 8, 12.0, 45.0, 'Alessandro', 'Verde', TRUE, 'Zoologia'),
+    ('KLM456NOP', 12, 1, 12.5, 42.5, 'Beatrice', 'Fucsia', FALSE, 'Ecologia'),
+    ('QRS789TUV', 13, 1, 11.0, 45.7, 'Carlo', 'Senape', TRUE, 'Entomologia'),
+    ('XYZ012ABC', 14, 3, 11.0, 43.7, 'Doriana', 'Ocra', TRUE, 'Botanica'),
+    ('DEF345GHI', 15, 6, 8.2, 44.7, 'Ernesto', 'Ciano', TRUE, 'Micologia');
 
 insert into Addetto_Monitoraggio (CF, Id_monitoraggio, Id_Stazione, Id_bacino, longitudine, latitudine, nome, cognome, disponibilità, Competenze_tecniche, Strumentazione_utilizzata)
 values

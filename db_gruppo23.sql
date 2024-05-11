@@ -750,6 +750,108 @@ values
     (1, 13, 1, 12.0, 45.0),
     (2, 13, 1, 12.0, 45.0);
 
+insert into Strategia (Nome, Tecnica)
+values
+    ('Conservazione diretta', 'Ripristino habitat'),
+    ('Conservazione diretta', 'Corridoi ecologici'),
+    ('Conservazione diretta', 'Esclusioni predatorie'),
+    ('Conservazione diretta', 'Reintroduzione specie'),
+    ('Conservazione diretta', 'Banca geni'),
+    ('Conservazione indiretta', 'Educazione ambientale'),
+    ('Conservazione indiretta', 'Turismo ecologico'),
+    ('Conservazione indiretta', 'Sovvenzioni'),
+    ('Conservazione indiretta', 'Regolamenti di caccia'),
+    ('Conservazione indiretta', 'Monitoraggio biodiversità'), --10
+    ('Conservazione integrata', 'Gestione integrata risorse'),
+    ('Conservazione integrata', 'Piani uso terra'),
+    ('Conservazione integrata', 'Agroecologia'),
+    ('Conservazione integrata', 'Acquacoltura sostenibile'),
+    ('Conservazione integrata', 'Energia rinnovabile'),
+    ('Ricerca e sviluppo', 'Tecnologie innovative'),
+    ('Ricerca e sviluppo', 'Bioingegneria'),
+    ('Ricerca e sviluppo', 'Bioremediation'),
+    ('Ricerca e sviluppo', 'Satelliti e droni'),
+    ('Ricerca e sviluppo', 'Modeling ecologico'), --20
+    ('Gestione risorse', 'Acque sotterranee'),
+    ('Gestione risorse', 'Risorse forestali'),
+    ('Gestione risorse', 'Pesca sostenibile'),
+    ('Gestione risorse', 'Risorse minerarie'),
+    ('Gestione risorse', 'Risorse eoliche'),
+    ('Sostenibilità', 'Cicli di materiali'),
+    ('Sostenibilità', 'Efficienza energetica'),
+    ('Sostenibilità', 'Riduzione emissioni'),
+    ('Sostenibilità', 'Riciclo rifiuti'),
+    ('Sostenibilità', 'Prodotti biodegradabili'), --30
+    ('Adattamento climatico', 'Barriere contro maree'),
+    ('Adattamento climatico', 'Foreste urbane'),
+    ('Adattamento climatico', 'Agricoltura resistente'),
+    ('Adattamento climatico', 'Sistemi di allarme'),
+    ('Adattamento climatico', 'Infrastrutture resilienti'),
+    ('Salvaguardia ambientale', 'Zone protette'),
+    ('Salvaguardia ambientale', 'Legislazione ambientale'),
+    ('Salvaguardia ambientale', 'Sicurezza alimentare'),
+    ('Salvaguardia ambientale', 'Controllo inquinamento'),
+    ('Salvaguardia ambientale', 'Gestione rifiuti'), --40
+    ('Ripristino ambientale', 'Bonifica siti'),
+    ('Ripristino ambientale', 'Riforestazione'),
+    ('Ripristino ambientale', 'Rigenerazione naturale'),
+    ('Ripristino ambientale', 'Ricostruzione ecosistemi'),
+    ('Ripristino ambientale', 'Gestione specie invasive'); --45
+
+insert into Sfrutta (Nome_Strategia, Tecnica, Id_iniziativa, Id_bacino, longitudine, latitudine)
+values
+    ('Conservazione diretta', 'Ripristino habitat', 1, 1, 12.0, 45.0),
+    ('Conservazione diretta', 'Corridoi ecologici', 2, 2, 12.5, 42.5),
+    ('Conservazione diretta', 'Esclusioni predatorie', 3, 2, 12.5, 42.5),
+    ('Conservazione diretta', 'Reintroduzione specie', 4, 3, 11.0, 45.7),
+    ('Conservazione diretta', 'Banca geni', 5, 4, 11.0, 43.7),
+    ('Conservazione indiretta', 'Educazione ambientale', 6, 5, 8.2, 44.7),
+    ('Conservazione indiretta', 'Turismo ecologico', 7, 6, 10.5, 43.9),
+    ('Conservazione indiretta', 'Sovvenzioni', 8, 7, 11.6, 45.4),
+    ('Conservazione indiretta', 'Regolamenti di caccia', 9, 7, 11.6, 45.4),
+    ('Conservazione indiretta', 'Monitoraggio biodiversità', 10, 10, 11.4, 44.4), --10
+    ('Conservazione integrata', 'Gestione integrata risorse', 11, 8, 13.0, 46.3),
+    ('Conservazione integrata', 'Piani uso terra', 12, 1, 12.0, 45.0),
+    ('Conservazione integrata', 'Agroecologia', 13, 1, 12.0, 45.0),
+    ('Conservazione integrata', 'Acquacoltura sostenibile', 14, 3, 11.0, 45.7),
+    ('Conservazione integrata', 'Energia rinnovabile', 15, 6, 10.5, 43.9),
+    ('Ricerca e sviluppo', 'Tecnologie innovative', 16, 9, 12.4, 46.4),
+    ('Ricerca e sviluppo', 'Bioingegneria', 17, 9, 12.4, 46.4),
+    ('Ricerca e sviluppo', 'Bioremediation', 18, 1, 12.0, 45.0),
+    ('Ricerca e sviluppo', 'Satelliti e droni', 19, 5, 8.2, 44.7),
+    ('Ricerca e sviluppo', 'Modeling ecologico', 20, 10, 11.4, 44.4), --20
+    ('Gestione risorse', 'Acque sotterranee', 21, 1, 12.0, 45.0),
+    ('Gestione risorse', 'Risorse forestali', 22, 6, 10.5, 43.9),
+    ('Gestione risorse', 'Pesca sostenibile', 23, 3, 11.0, 45.7),
+    ('Gestione risorse', 'Risorse minerarie', 24, 8, 13.0, 46.3),
+    ('Gestione risorse', 'Risorse eoliche', 25, 5, 8.2, 44.7),
+    ('Sostenibilità', 'Cicli di materiali', 26, 6, 10.5, 43.9),
+    ('Sostenibilità', 'Efficienza energetica', 27, 9, 12.4, 46.4),
+    ('Sostenibilità', 'Riduzione emissioni', 28, 8, 13.0, 46.3),
+    ('Sostenibilità', 'Riciclo rifiuti', 29, 2, 12.5, 42.5),
+    ('Sostenibilità', 'Prodotti biodegradabili', 30, 10, 11.4, 44.4), --30
+    ('Adattamento climatico', 'Barriere contro maree', 31, 1, 12.0, 45.0),
+    ('Adattamento climatico', 'Foreste urbane', 32, 2, 12.5, 42.5),
+    ('Adattamento climatico', 'Agricoltura resistente', 33, 3, 11.0, 45.7),
+    ('Adattamento climatico', 'Sistemi di allarme', 34, 4, 11.0, 43.7),
+    ('Adattamento climatico', 'Infrastrutture resilienti', 35, 5, 8.2, 44.7),
+    ('Salvaguardia ambientale', 'Zone protette', 36, 6, 10.5, 43.9),
+    ('Salvaguardia ambientale', 'Legislazione ambientale', 37, 7, 11.6, 45.4),
+    ('Salvaguardia ambientale', 'Sicurezza alimentare', 38, 8, 13.0, 46.3),
+    ('Salvaguardia ambientale', 'Controllo inquinamento', 39, 9, 12.4, 46.4),
+    ('Salvaguardia ambientale', 'Gestione rifiuti', 40, 10, 11.4, 44.4), --40
+    ('Ripristino ambientale', 'Bonifica siti', 41, 11, 9.4, 45.6),
+    ('Ripristino ambientale', 'Riforestazione', 42, 12, 9.4, 46.1),
+    ('Ripristino ambientale', 'Rigenerazione naturale', 43, 13, 10.1, 45.5),
+    ('Ripristino ambientale', 'Ricostruzione ecosistemi', 44, 14, 8.6, 45.7),
+    ('Ripristino ambientale', 'Gestione specie invasive', 45, 15, 14.2, 41.9),
+    ('Conservazione diretta', 'Ripristino habitat', 46, 1, 12.0, 45.0),
+    ('Conservazione diretta', 'Corridoi ecologici', 47, 2, 12.5, 42.5),
+    ('Conservazione diretta', 'Esclusioni predatorie', 48, 3, 11.0, 45.7),
+    ('Conservazione diretta', 'Reintroduzione specie', 49, 4, 11.0, 43.7),
+    ('Conservazione diretta', 'Banca geni', 50, 5, 8.2, 44.7); --50
+
+
 
 --Permette di contare il numero di presenze di una specie nei bacini
 select s.nome_scientifico,count(BI.nome) as numero_di_presenze

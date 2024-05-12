@@ -254,7 +254,6 @@ create table Sfrutta
 );
 
 
-
 insert into Posizione (latitudine, longitudine, area_geografica, altitudine)
 values
     (45.0, 12.0, 'Pianura', 45),           -- Bacino del Po
@@ -625,41 +624,71 @@ values
     (39, 9, 12.4, 46.4, '2024-02-09', NULL, NULL),
     (40, 10, 11.4, 44.4, '2024-02-10', NULL, NULL);
 
+
+--funzione che controlla validità CF
+CREATE OR REPLACE FUNCTION verifica_codice_fiscale()
+    RETURNS TRIGGER AS $$
+BEGIN
+    -- Verifica che il CF abbia esattamente 16 caratteri
+    IF LENGTH(NEW.CF) != 16 THEN
+        RAISE EXCEPTION 'Il codice fiscale deve contenere 16 caratteri.';
+    END IF;
+
+    -- Verifica il formato del CF
+    IF NEW.CF !~ '^[A-Z0-9]{16}$' THEN
+        RAISE EXCEPTION 'Il codice fiscale contiene caratteri non validi.';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger per la tabella Addetto_Conservazione
+CREATE TRIGGER verifica_cf_addetto_conservazione
+    BEFORE INSERT OR UPDATE ON Addetto_Conservazione
+    FOR EACH ROW EXECUTE FUNCTION verifica_codice_fiscale();
+
+-- Trigger per la tabella Addetto_Monitoraggio
+CREATE TRIGGER verifica_cf_addetto_monitoraggio
+    BEFORE INSERT OR UPDATE ON Addetto_Monitoraggio
+    FOR EACH ROW EXECUTE FUNCTION verifica_codice_fiscale();
+
 insert into Addetto_Conservazione (CF, Id_iniziativa, Id_bacino, longitudine, latitudine, nome, cognome, disponibilità, Specializzazione)
 values
-    ('ABC123XYZ', 1, 1, 12.0, 45.0, 'Mario', 'Rossi', TRUE, 'Botanica'),
-    ('DEF456UVW', 2, 2, 12.5, 42.5, 'Luigi', 'Bianchi', TRUE, 'Ittiologia'),
-    ('GHI789RST', 3, 2, 12.5, 42.5, 'Giovanni', 'Verdi', FALSE, 'Ornitologia'),
-    ('JKL012XYZ', 4, 3, 11.0, 45.7, 'Paola', 'Neri', TRUE, 'Entomologia'),
-    ('MNO345UVW', 5, 4, 11.0, 43.7, 'Anna', 'Gialli', TRUE, 'Micologia'),
-    ('PQR678RST', 6, 5, 8.2, 44.7, 'Sara', 'Marrone', FALSE, 'Ecologia'),
-    ('STU901XYZ', 7, 6, 10.5, 43.9, 'Daniele', 'Viola', TRUE, 'Zoologia'),
-    ('VWX234UVW', 8, 7, 11.6, 45.4, 'Elisa', 'Grigio', TRUE, 'Botanica'),
-    ('YZA567RST', 9, 7, 11.6, 45.4, 'Federico', 'Blu', FALSE, 'Ittiologia'),
-    ('BCD890XYZ', 10, 10, 11.4, 44.4, 'Chiara', 'Arancio', TRUE, 'Ornitologia'),
-    ('EFG123HIJ', 11, 8, 13.0, 46.3, 'Alessandro', 'Verde', TRUE, 'Zoologia'),
-    ('KLM456NOP', 12, 1, 12.0, 45.0, 'Beatrice', 'Fucsia', FALSE, 'Ecologia'),
-    ('QRS789TUV', 13, 1, 12.0, 45.0, 'Carlo', 'Senape', TRUE, 'Entomologia'),
-    ('XYZ012ABC', 14, 3, 11.0, 45.7, 'Doriana', 'Ocra', TRUE, 'Botanica'),
-    ('DEF345GHI', 15, 6, 10.5, 43.9, 'Ernesto', 'Ciano', TRUE, 'Micologia');
+    ('RSSMRA85M01H501T', 1, 1, 12.0, 45.0, 'Mario', 'Rossi', TRUE, 'Botanica'),
+    ('BNCLGU82D15F205Z', 2, 2, 12.5, 42.5, 'Luigi', 'Bianchi', TRUE, 'Ittiologia'),
+    ('VRDGNN87P08Z602P', 3, 2, 12.5, 42.5, 'Giovanni', 'Verdi', FALSE, 'Ornitologia'),
+    ('NRAPLA76S41G912V', 4, 3, 11.0, 45.7, 'Paola', 'Neri', TRUE, 'Entomologia'),
+    ('GLLANA84E55E514R', 5, 4, 11.0, 43.7, 'Anna', 'Gialli', TRUE, 'Micologia'),
+    ('MRNSRA81A64L219D', 6, 5, 8.2, 44.7, 'Sara', 'Marrone', FALSE, 'Ecologia'),
+    ('DNLNDE89T10A783K', 7, 6, 10.5, 43.9, 'Daniele', 'Viola', TRUE, 'Zoologia'),
+    ('GRSELZ83R58D969M', 8, 7, 11.6, 45.4, 'Elisa', 'Grigio', TRUE, 'Botanica'),
+    ('BLUFRC91M27Z404S', 9, 7, 11.6, 45.4, 'Federico', 'Blu', FALSE, 'Ittiologia'),
+    ('RNCCRA89M65B405V', 10, 10, 11.4, 44.4, 'Chiara', 'Arancio', TRUE, 'Ornitologia'),
+    ('VRDALX88P01F839J', 11, 8, 13.0, 46.3, 'Alessandro', 'Verde', TRUE, 'Zoologia'),
+    ('FCSBTR90L28D612P', 12, 1, 12.0, 45.0, 'Beatrice', 'Fucsia', FALSE, 'Ecologia'),
+    ('SNCCLR88E21Z100X', 13, 1, 12.0, 45.0, 'Carlo', 'Senape', TRUE, 'Entomologia'),
+    ('DRLDRA84C41H501Q', 14, 3, 11.0, 45.7, 'Doriana', 'Ocra', TRUE, 'Botanica'),
+    ('CYNERN85M08F205Z', 15, 6, 10.5, 43.9, 'Ernesto', 'Ciano', TRUE, 'Micologia');
+
 
 insert into Addetto_Monitoraggio (CF, Id_monitoraggio, Id_Stazione, Id_bacino, longitudine, latitudine, nome, cognome, disponibilità, Competenze_tecniche, Strumentazione_utilizzata)
 values
-    ('ZXC123PQR', 1, 1, 1, 12.0, 45.0, 'Antonio', 'Gialli', TRUE, 'Biologia Acquatica', 'pHmetro'),
-    ('VBN456STU', 2, 2, 2, 12.5, 42.5, 'Beatrice', 'Verde', FALSE, 'Biologia Marittima', 'Sonar'),
-    ('MLK789XYZ', 3, 3, 3, 11.0, 45.7, 'Carlo', 'Blu', TRUE, 'Qualità dell acqua', 'Turbidimetro'),
-    ('NOP012DEF', 4, 4, 4, 11.0, 43.7, 'Daniela', 'Marrone', FALSE, 'Ecologia Fluviale', 'Oxygen Kit'),
-    ('QRS345GHI', 5, 5, 5, 8.2, 44.7, 'Elena', 'Rossa', TRUE, 'Geologia', 'Sismografo'),
-    ('TUV678JKL', 6, 6, 6, 10.5, 43.9, 'Fabio', 'Neri', FALSE, 'Meteorologia', 'Anemometro'),
-    ('WXY901ABC', 7, 7, 7, 11.6, 45.4, 'Giulia', 'Bianchi', TRUE, 'Botanica', 'GPS'),
-    ('CD123EFG', 8, 8, 8, 13.0, 46.3, 'Hector', 'Sarto', FALSE, 'Chimica Ambientale', 'Spectrometer'),
-    ('HI456JKL', 9, 9, 9, 12.4, 46.4, 'Irene', 'Fucsia', TRUE, 'Controllo Emissioni', 'Particulate Monitor'),
-    ('LM789NOP', 10, 10, 10, 11.4, 44.4, 'Luigi', 'Ocra', FALSE, 'Monitoraggio Fauna', 'Camera Trap'),
-    ('OP012QRS', 11, 11, 11, 9.4, 45.6, 'Monica', 'Verde', TRUE, 'Climatologia', 'Barometro'),
-    ('TU345VWX', 12, 12, 12, 9.4, 46.1, 'Nadia', 'Ciano', FALSE, 'Idrologia', 'Flow Meter'),
-    ('YZ678ABC', 13, 13, 13, 10.1, 45.5, 'Oscar', 'Viola', TRUE, 'Ricerca della Biodiversità', 'Microscopio'),
-    ('DE901FGH', 14, 14, 14, 8.6, 45.7, 'Paola', 'Lilla', FALSE, 'Studi Ambientali', 'Drone'),
-    ('IJ234KLM', 15, 15, 15, 14.2, 41.9, 'Quentin', 'Azzurro', TRUE, 'Analisi dell aria', 'Gas Chromatograph');
+    ('GLLANT86H13D969L', 1, 1, 1, 12.0, 45.0, 'Antonio', 'Gialli', TRUE, 'Biologia Acquatica', 'pHmetro'),
+    ('VRDBEA87D45E203Y', 2, 2, 2, 12.5, 42.5, 'Beatrice', 'Verde', FALSE, 'Biologia Marittima', 'Sonar'),
+    ('BLUCRL89P12F205W', 3, 3, 3, 11.0, 45.7, 'Carlo', 'Blu', TRUE, 'Qualità dell acqua', 'Turbidimetro'),
+    ('MRNDNL90M14L219U', 4, 4, 4, 11.0, 43.7, 'Daniela', 'Marrone', FALSE, 'Ecologia Fluviale', 'Oxygen Kit'),
+    ('RSSLEN85S54H501J', 5, 5, 5, 8.2, 44.7, 'Elena', 'Rossa', TRUE, 'Geologia', 'Sismografo'),
+    ('NRIFBO84M11G912C', 6, 6, 6, 10.5, 43.9, 'Fabio', 'Neri', FALSE, 'Meteorologia', 'Anemometro'),
+    ('BNCGLI89T50F205X', 7, 7, 7, 11.6, 45.4, 'Giulia', 'Bianchi', TRUE, 'Botanica', 'GPS'),
+    ('SRTHEC88M20Z600R', 8, 8, 8, 13.0, 46.3, 'Hector', 'Sarto', FALSE, 'Chimica Ambientale', 'Spectrometer'),
+    ('FCSIRN92E54D612F', 9, 9, 9, 12.4, 46.4, 'Irene', 'Fucsia', TRUE, 'Controllo Emissioni', 'Particulate Monitor'),
+    ('OCRLGI81A61B405H', 10, 10, 10, 11.4, 44.4, 'Luigi', 'Ocra', FALSE, 'Monitoraggio Fauna', 'Camera Trap'),
+    ('VRDMNC88D48F839B', 11, 11, 11, 9.4, 45.6, 'Monica', 'Verde', TRUE, 'Climatologia', 'Barometro'),
+    ('CNONDH86P08Z203T', 12, 12, 12, 9.4, 46.1, 'Nadia', 'Ciano', FALSE, 'Idrologia', 'Flow Meter'),
+    ('VLACOS87M29A783G', 13, 13, 13, 10.1, 45.5, 'Oscar', 'Viola', TRUE, 'Ricerca della Biodiversità', 'Microscopio'),
+    ('LILPLA90L52G912K', 14, 14, 14, 8.6, 45.7, 'Paola', 'Lilla', FALSE, 'Studi Ambientali', 'Drone'),
+    ('AZZQTN91E13E514V', 15, 15, 15, 14.2, 41.9, 'Quentin', 'Azzurro', TRUE, 'Analisi dell aria', 'Gas Chromatograph');
 
 insert into Organizzazione_Collaboratrice (Id_organizzazione, contributo, ruolo, tipo)
 values
@@ -889,3 +918,6 @@ create view N_Organizzazioni_per_Intervento as (select count(Id_iniziativa) as n
 
 --Seleziona il bacino col maggior numero di iniziative
 select * from N_Organizzazioni_per_Intervento where numero_iniziative = (select max(numero_iniziative) from N_Organizzazioni_per_Intervento);
+
+
+

@@ -486,6 +486,27 @@ values
     (34, 3, 2, 'Conducibilità', 510, FALSE),
     (35, 4, 2, 'Ossigeno', 7.5, TRUE);
 
+CREATE OR REPLACE FUNCTION verifica_sovrapposizione_monitoraggio()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.Id_Monitoraggio IN (SELECT Id_Monitoraggio FROM Monitoraggio_Presente) AND
+       NEW.Id_Monitoraggio IN (SELECT Id_Monitoraggio FROM Monitoraggio_Passato) THEN
+        RAISE EXCEPTION 'Un monitoraggio non può essere presente e passato contemporaneamente';
+    end if;
+    return New;
+end;
+$$ LANGUAGE plpgsql;
+
+-- Trigger verifica che in non ci sia un Monitoraggio sia presente che passato
+CREATE TRIGGER verifica_sovrapposizione_monitoraggio_trigger
+    BEFORE INSERT OR UPDATE ON Monitoraggio_Presente
+    FOR EACH ROW EXECUTE FUNCTION verifica_sovrapposizione_monitoraggio();
+
+CREATE TRIGGER verifica_sovrapposizione_monitoraggio_trigger
+    BEFORE INSERT OR UPDATE ON Monitoraggio_Passato
+    FOR EACH ROW EXECUTE FUNCTION verifica_sovrapposizione_monitoraggio();
+
+
 insert into Monitoraggio (Id_Monitoraggio, Id_bacino, longitudine, latitudine, Id_Stazione, tipo_monitoraggio, data_inizio)
 values
     (1, 1, 12.0, 45.0, 1, 'Qualità acqua', '2023-01-01'),
@@ -625,7 +646,7 @@ values
     (40, 10, 11.4, 44.4, '2024-02-10', NULL, NULL);
 
 
---funzione che controlla validità CF
+-- Funzione che controlla validità CF
 CREATE OR REPLACE FUNCTION verifica_codice_fiscale()
     RETURNS TRIGGER AS $$
 BEGIN
@@ -652,6 +673,31 @@ CREATE TRIGGER verifica_cf_addetto_conservazione
 CREATE TRIGGER verifica_cf_addetto_monitoraggio
     BEFORE INSERT OR UPDATE ON Addetto_Monitoraggio
     FOR EACH ROW EXECUTE FUNCTION verifica_codice_fiscale();
+
+-- Funzione unicità CF tra addetti
+CREATE OR REPLACE FUNCTION unicità_cf()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS(
+        SELECT 1 from Addetto_Conservazione WHERE CF = New.CF
+        UNION ALL
+        SELECT 1 from Addetto_Monitoraggio WHERE CF = New.CF
+        ) THEN
+        RAISE EXCEPTION 'Il codice fiscale deve essere unico tra gli addetti.';
+    end if;
+    return New;
+end;
+$$ LANGUAGE plpgsql;
+
+-- Trigger verifica che in Addetto_Conservazione e Addetto_Monitoraggio non ci siano CF uguali
+CREATE TRIGGER unicità_cf_trigger
+    BEFORE INSERT OR UPDATE ON Addetto_Conservazione
+    FOR EACH ROW EXECUTE FUNCTION unicità_cf();
+
+CREATE TRIGGER unicità_cf_trigger
+    BEFORE INSERT OR UPDATE ON Addetto_Monitoraggio
+    FOR EACH ROW EXECUTE FUNCTION unicità_cf();
+
 
 insert into Addetto_Conservazione (CF, Id_iniziativa, Id_bacino, longitudine, latitudine, nome, cognome, disponibilità, Specializzazione)
 values

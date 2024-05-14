@@ -17,7 +17,7 @@ create schema hidric;
 set schema 'hidric';
 */
 
-drop view if exists N_Organizzazioni_per_Intervento;
+drop view if exists Numero_Iniziative_per_Bacino;
 drop table if exists Sfrutta;
 drop table if exists Adesione;
 drop table if exists Organizzazione_Collaboratrice;
@@ -963,7 +963,7 @@ where ac.disponibilità = true;
 create view Numero_Iniziative_per_Bacino as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino from Iniziativa_Conservazione group by  Iniziativa_Conservazione.Id_bacino order by Iniziativa_Conservazione.Id_bacino ) ;
 
 --Seleziona il bacino col maggior numero di iniziative
-select * from Numero_Iniziative_per_Bacino where numero_iniziative = (select max(numero_iniziative) from N_Organizzazioni_per_Intervento);
+select * from Numero_Iniziative_per_Bacino where numero_iniziative = (select max(numero_iniziative) from Numero_Iniziative_per_Bacino);
 
 
 

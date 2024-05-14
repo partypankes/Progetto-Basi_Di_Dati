@@ -17,7 +17,6 @@ set schema 'prova';
 */
 
 
-drop view  if exists  numero_iniziative_per_bacino;
 drop table if exists Addetto_Monitoraggio;
 drop table if exists Addetto_Conservazione;
 drop table if exists Iniziativa_Conservazione;

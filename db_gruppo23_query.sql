@@ -28,6 +28,9 @@ select ac.CF,ac.nome
 from Addetto_Conservazione ac
 where ac.disponibilità = true;
 
+
+drop view if exists numero_iniziative_per_bacino;
+
 --Trova il numero di Iniziative di Conservazione per Bacino Idrografico
 create view Numero_Iniziative_per_Bacino as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino
 from Iniziativa_Conservazione

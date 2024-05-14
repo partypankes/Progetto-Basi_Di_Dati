@@ -940,7 +940,7 @@ group by s.nome_scientifico;
 select count(bi.nome) as grandi_bacini_senza_interventi_passati
 from Bacino_Idrografico bi
 where bi.volume_acqua > 10000 and exists (
-    select *
+    select 1
     from Bacino_Idrografico b
     join Iniziativa_Conservazione ic on b.Id_bacino = ic.Id_bacino
         and b.longitudine = ic.longitudine
@@ -960,10 +960,18 @@ from Addetto_Conservazione ac
 where ac.disponibilità = true;
 
 --Trova il numero di Iniziative di Conservazione per Bacino Idrografico
-create view Numero_Iniziative_per_Bacino as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino from Iniziativa_Conservazione group by  Iniziativa_Conservazione.Id_bacino order by Iniziativa_Conservazione.Id_bacino ) ;
+create view Numero_Iniziative_per_Bacino as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino
+from Iniziativa_Conservazione
+group by  Iniziativa_Conservazione.Id_bacino
+order by Iniziativa_Conservazione.Id_bacino
+);
 
 --Seleziona il Bacino Idrografico col maggior numero di Iniziative di Conservazione
-select * from Numero_Iniziative_per_Bacino where numero_iniziative = (select max(numero_iniziative) from Numero_Iniziative_per_Bacino);
+select * from Numero_Iniziative_per_Bacino
+where numero_iniziative = (
+select max(numero_iniziative)
+from Numero_Iniziative_per_Bacino
+);
 
 
 

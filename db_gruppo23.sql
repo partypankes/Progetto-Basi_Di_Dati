@@ -929,14 +929,14 @@ values
 
 
 
---Permette di contare il numero di presenze di una specie nei bacini
+--Permette di contare il numero di presenze di una specie nei Bacini Idrografici
 select s.nome_scientifico,count(BI.nome) as numero_di_presenze
 from Specie s
 join Esistenza E on s.nome_scientifico = E.nome_scientifico
 join Bacino_Idrografico BI on BI.Id_bacino = E.Id_bacino and BI.longitudine = E.longitudine and BI.latitudine = E.latitudine
 group by s.nome_scientifico;
 
-
+--Restituiscie il numero di Bacini Idrografici con volume d'acqua > 10000 e senza interventi passati
 select count(bi.nome) as grandi_bacini_senza_interventi_passati
 from Bacino_Idrografico bi
 where bi.volume_acqua > 10000 and exists (
@@ -962,7 +962,7 @@ where ac.disponibilità = true;
 --Trova il numero di Iniziative di Conservazione per Bacino Idrografico
 create view Numero_Iniziative_per_Bacino as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino from Iniziativa_Conservazione group by  Iniziativa_Conservazione.Id_bacino order by Iniziativa_Conservazione.Id_bacino ) ;
 
---Seleziona il bacino col maggior numero di iniziative
+--Seleziona il Bacino Idrografico col maggior numero di Iniziative di Conservazione
 select * from Numero_Iniziative_per_Bacino where numero_iniziative = (select max(numero_iniziative) from Numero_Iniziative_per_Bacino);
 
 

@@ -50,3 +50,37 @@ CREATE TRIGGER unicità_cf_trigger
 CREATE TRIGGER unicità_cf_trigger
     BEFORE INSERT OR UPDATE ON Addetto_Monitoraggio
     FOR EACH ROW EXECUTE FUNCTION unicità_cf();
+
+
+CREATE OR REPLACE FUNCTION verifica_sovrapposizione_date()
+    RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM Addetto_Conservazione AC
+                 JOIN Iniziativa_Conservazione IC ON AC.Id_iniziativa = IC.Id_iniziativa
+        WHERE AC.CF = NEW.CF
+          AND AC.Id_iniziativa != NEW.Id_iniziativa
+          AND (
+            (SELECT data_inizio FROM Iniziativa_Conservazione WHERE Id_iniziativa = NEW.Id_iniziativa) BETWEEN IC.data_inizio AND IC.data_fine OR
+            (SELECT data_fine FROM Iniziativa_Conservazione WHERE Id_iniziativa = NEW.Id_iniziativa) BETWEEN IC.data_inizio AND IC.data_fine OR
+            IC.data_inizio BETWEEN (SELECT data_inizio FROM Iniziativa_Conservazione WHERE Id_iniziativa = NEW.Id_iniziativa) AND (SELECT data_fine FROM Iniziativa_Conservazione WHERE Id_iniziativa = NEW.Id_iniziativa)
+            )
+    ) THEN
+        RAISE EXCEPTION 'L''addetto è già assegnato a un''altra iniziativa nel periodo indicato.';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verifica_sovrapposizione
+    BEFORE INSERT OR UPDATE ON Addetto_Conservazione
+    FOR EACH ROW
+EXECUTE FUNCTION verifica_sovrapposizione_date();
+
+
+
+
+
+

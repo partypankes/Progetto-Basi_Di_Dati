@@ -211,7 +211,11 @@ values
     (4, 43.7, 11.0, 'Pinus nigra', 20),
     (4, 43.7, 11.0, 'Quercus robur', 15),
     (4, 43.7, 11.0, 'Rosa canina', 10),
-    (4, 43.7, 11.0, 'Abies alba', 25);
+    (3, 45.7, 11.0, 'Picea abies', 8),
+    (3, 45.7, 11.0, 'Quercus robur', 15),
+    (2, 42.5, 12.5, 'Perca fluviatilis', 10),
+    (4, 43.7, 11.0, 'Salmo salar', 6),
+    (4, 43.7, 11.0, 'Acer campestre', 25);
 
 insert into Stazione_Monitoraggio (Id_Stazione, Stato_attivazione, nome)
 values

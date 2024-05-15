@@ -12,8 +12,8 @@
 
 
 
-create schema prova;
-set schema 'prova';
+create schema hidric;
+set schema 'hidric';
 */
 
 drop table if exists Addetto_Monitoraggio;

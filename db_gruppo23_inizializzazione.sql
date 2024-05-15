@@ -16,7 +16,6 @@ create schema prova;
 set schema 'prova';
 */
 
-
 drop table if exists Addetto_Monitoraggio;
 drop table if exists Addetto_Conservazione;
 drop table if exists Iniziativa_Conservazione;

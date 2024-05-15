@@ -1,4 +1,4 @@
--- Funzione che controlla validità CF
+-- Funzione che controlla validità CF secondo il formato italiano
 CREATE OR REPLACE FUNCTION verifica_codice_fiscale()
     RETURNS TRIGGER AS $$
 BEGIN
@@ -7,9 +7,9 @@ BEGIN
         RAISE EXCEPTION 'Il codice fiscale deve contenere 16 caratteri.';
     END IF;
 
-    -- Verifica il formato del CF
-    IF NEW.CF !~ '^[A-Z0-9]{16}$' THEN
-        RAISE EXCEPTION 'Il codice fiscale contiene caratteri non validi.';
+    -- Verifica il formato del CF italiano
+    IF NEW.CF !~ '^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$' THEN
+        RAISE EXCEPTION 'Il codice fiscale non è conforme al formato italiano.';
     END IF;
 
     RETURN NEW;
@@ -25,6 +25,7 @@ CREATE TRIGGER verifica_cf_addetto_conservazione
 CREATE TRIGGER verifica_cf_addetto_monitoraggio
     BEFORE INSERT OR UPDATE ON Addetto_Monitoraggio
     FOR EACH ROW EXECUTE FUNCTION verifica_codice_fiscale();
+
 
 
 -- Funzione unicità CF tra addetti

@@ -44,14 +44,15 @@ where ac.disponibilità = true;
 drop view if exists numero_iniziative_per_bacino;
 
 --Trova il numero di Iniziative di Conservazione per Bacino Idrografico
-create view Numero_Iniziative_per_Bacino as (select count(Id_iniziativa) as numero_iniziative,Iniziativa_Conservazione.Id_bacino
+create view Numero_Iniziative_per_Bacino as (select Iniziativa_Conservazione.Id_bacino,count(Id_iniziativa) as numero_iniziative
 from Iniziativa_Conservazione
 group by  Iniziativa_Conservazione.Id_bacino
 order by Iniziativa_Conservazione.Id_bacino
 );
 
 --Seleziona il Bacino Idrografico col maggior numero di Iniziative di Conservazione
-select numero_iniziative,BI.Id_bacino ,BI.nome from Numero_Iniziative_per_Bacino join Bacino_Idrografico BI on Numero_Iniziative_per_Bacino.Id_bacino = BI.Id_bacino
+select BI.nome ,numero_iniziative from Numero_Iniziative_per_Bacino
+join Bacino_Idrografico BI on Numero_Iniziative_per_Bacino.Id_bacino = BI.Id_bacino
 where numero_iniziative = (
 select max(numero_iniziative)
 from Numero_Iniziative_per_Bacino

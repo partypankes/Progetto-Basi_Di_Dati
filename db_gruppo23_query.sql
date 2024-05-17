@@ -17,19 +17,7 @@ where bi.volume_acqua > 10000 and exists (
     where ic.data_fine is null
       and bi.Id_bacino = b.Id_bacino
 );
-/*
-select count(bi.nome) as grandi_bacini_senza_interventi_passati
-from Bacino_Idrografico bi
-where bi.volume_acqua > 10000 and exists (
-    select 1
-    from Bacino_Idrografico b
-    join Iniziativa_Conservazione ic on b.Id_bacino = ic.Id_bacino
-        and b.longitudine = ic.longitudine
-        and b.latitudine = ic.latitudine
-    where ic.data_fine is null
-      and bi.Id_bacino = b.Id_bacino
-);
-*/
+
 
 --Unisce i nomi e il CF degli Addetti al Monitoraggio e degli Addetti alla Conservazione disponibili
 select am.CF,am.nome

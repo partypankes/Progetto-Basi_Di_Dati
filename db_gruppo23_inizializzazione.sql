@@ -1,8 +1,19 @@
+-- Database: gruppo23_hidric
 
-/*
+CREATE DATABASE gruppo23_hidric
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Italian_Italy.1252'
+    LC_CTYPE = 'Italian_Italy.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
 create schema hidric;
 set schema 'hidric';
-*/
+
 
 drop table if exists Addetto_Monitoraggio cascade;
 drop table if exists Addetto_Conservazione cascade;

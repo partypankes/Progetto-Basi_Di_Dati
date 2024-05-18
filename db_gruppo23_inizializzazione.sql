@@ -1,19 +1,18 @@
 
-
+/*
 create schema hidric;
 set schema 'hidric';
+*/
 
-
-drop table if exists Addetto_Monitoraggio;
-drop table if exists Addetto_Conservazione;
-drop table if exists Iniziativa_Conservazione;
-drop table if exists Monitoraggio;
-drop table if exists Stazione_Monitoraggio;
-drop table if exists Esistenza;
-drop table if exists Specie;
-drop table if exists Bacino_Idrografico;
-drop table if exists Posizione;
-
+drop table if exists Addetto_Monitoraggio cascade;
+drop table if exists Addetto_Conservazione cascade;
+drop table if exists Iniziativa_Conservazione cascade;
+drop table if exists Monitoraggio cascade;
+drop table if exists Stazione_Monitoraggio cascade;
+drop table if exists Esistenza cascade;
+drop table if exists Specie cascade;
+drop table if exists Bacino_Idrografico cascade;
+drop table if exists Posizione cascade;
 
 create table Posizione
 (
@@ -24,7 +23,6 @@ create table Posizione
     primary key (latitudine, longitudine)
 );
 
-
 create table Bacino_Idrografico
 (
     Id_bacino    smallint,
@@ -34,8 +32,9 @@ create table Bacino_Idrografico
     longitudine  numeric,
     primary key (Id_bacino, latitudine, longitudine),
     constraint pk_posizione foreign key (latitudine, longitudine) references Posizione (latitudine, longitudine)
+        on delete restrict
+        on update cascade
 );
-
 
 create table Specie
 (
@@ -59,7 +58,6 @@ create table Specie
         )
 );
 
-
 create table Esistenza
 (
     Id_bacino              smallint,
@@ -68,8 +66,12 @@ create table Esistenza
     nome_scientifico       varchar(30),
     percentuale_abbondanza int check (percentuale_abbondanza <= 100 and percentuale_abbondanza >= 0),
     primary key (Id_bacino, latitudine, longitudine, nome_scientifico),
-    constraint pk_bacino_idrografico foreign key (Id_bacino, longitudine, latitudine) references Bacino_Idrografico (Id_bacino, longitudine, latitudine),
+    constraint pk_bacino_idrografico foreign key (Id_bacino, longitudine, latitudine) references Bacino_Idrografico (Id_bacino, longitudine, latitudine)
+        on delete cascade
+        on update cascade,
     constraint pk_specie foreign key (nome_scientifico) references Specie (nome_scientifico)
+        on delete restrict
+        on update cascade
 );
 
 create table Stazione_Monitoraggio
@@ -89,8 +91,12 @@ create table Monitoraggio
     tipo_monitoraggio varchar(30) not null,
     data_inizio       date        not null,
     primary key (Id_Monitoraggio, Id_bacino, longitudine, latitudine, Id_Stazione),
-    constraint pk_bacino_idrografico foreign key (Id_bacino, longitudine, latitudine) references Bacino_Idrografico (Id_bacino, longitudine, latitudine),
+    constraint pk_bacino_idrografico foreign key (Id_bacino, longitudine, latitudine) references Bacino_Idrografico (Id_bacino, longitudine, latitudine)
+        on delete cascade
+        on update cascade,
     constraint pk_stazione_monitoraggio foreign key (Id_Stazione) references Stazione_Monitoraggio (Id_Stazione)
+        on delete cascade
+        on update cascade
 );
 
 create table Iniziativa_Conservazione
@@ -111,6 +117,8 @@ create table Iniziativa_Conservazione
         ),
     primary key (Id_iniziativa, Id_bacino, longitudine, latitudine),
     constraint pk_bacino_idrografico foreign key (Id_bacino, longitudine, latitudine) references Bacino_Idrografico (Id_bacino, longitudine, latitudine)
+        on delete cascade
+        on update cascade
 );
 
 create table Addetto_Conservazione
@@ -125,6 +133,8 @@ create table Addetto_Conservazione
     disponibilità    boolean     not null,
     Specializzazione varchar(20) not null,
     constraint pk_iniziativa_conservazione foreign key (Id_iniziativa, Id_bacino, longitudine, latitudine) references Iniziativa_Conservazione (Id_iniziativa, Id_bacino, longitudine, latitudine)
+        on delete cascade
+        on update cascade
 );
 
 create table Addetto_Monitoraggio
@@ -141,7 +151,10 @@ create table Addetto_Monitoraggio
     Competenze_tecniche       varchar(30) not null,
     Strumentazione_utilizzata varchar(30) not null,
     constraint pk_monitoraggio foreign key (Id_monitoraggio, Id_Stazione, Id_bacino, longitudine, latitudine) references Monitoraggio (Id_monitoraggio, Id_Stazione, Id_bacino, longitudine, latitudine)
+        on delete cascade
+        on update cascade
 );
+
 
 
 insert into Posizione (latitudine, longitudine, area_geografica, altitudine)
